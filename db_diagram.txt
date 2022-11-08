@@ -1,0 +1,43 @@
+// use the site "dbdiagram.io" for generate
+// the database diagram using the schema bellow
+
+Table Books as B {
+  Id int [pk, increment]
+  ISBN varchar
+  Name varchar
+  AuthorId int
+  Publisher varchar
+  Quantity int
+  ReleaseDate datetime
+  CreationDate datetime
+}
+
+Table Authors as A {
+  Id int [pk, increment]
+  Name varchar
+  Country varchar
+  CreationDate datetime
+}
+
+Table Client as C {
+  Id int [pk, increment]
+  Registration varchar
+  Name varchar
+  Phone varchar
+  CreationDate datetime
+}
+
+Table Withdrawals as W {
+  Id int [pk, increment]
+  BookId int
+  ClientId int
+  WithdrawDate datetime
+  DevolutionDate datetime
+}
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one; <> many-to-many
+Ref: B.AuthorId <> A.Id
+Ref: W.ClientId <> C.Id
+Ref: W.BookId <> B.Id
