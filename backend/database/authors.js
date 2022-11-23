@@ -5,14 +5,14 @@ const conexao = {
   password: "postgres",
   host: "127.0.0.1",
   port: 5432,
-  database: "fullstack_project",
+  database: "fullstack_projeto",
 };
 
 exports.get = (callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "SELECT * FROM Authors";
+  const sql = "SELECT * FROM authors";
   cliente.query(sql, (err, result) => {
     if (err) {
       callback(err, undefined);
@@ -28,7 +28,7 @@ exports.insert = (author, callback) => {
   cliente.connect();
 
   const sql =
-    "INSERT INTO Authors(Name, Country, CreationDate) VALUES ($1, $2, NOW()) RETURNING *";
+    "INSERT INTO authors(name, country, creationdate) VALUES ($1, $2, NOW()) RETURNING *";
   const values = [author.name, author.country];
 
   cliente.query(sql, values, (err, result) => {
@@ -45,7 +45,7 @@ exports.getById = (id, callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "SELECT * FROM Authors WHERE id = $1";
+  const sql = "SELECT * FROM authors WHERE id = $1";
   const values = [id];
 
   cliente.query(sql, values, (err, result) => {
@@ -63,7 +63,7 @@ exports.update = (id, author, callback) => {
   cliente.connect();
 
   const sql =
-    "UPDATE Authors SET Name = $1, Country = $2 WHERE id = $3 RETURNING *";
+    "UPDATE authors SET name = $1, country = $2 WHERE id = $3 RETURNING *";
   const values = [author.name, author.country, id];
 
   cliente.query(sql, values, (err, result) => {
@@ -80,7 +80,7 @@ exports.delete = (id, callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "DELETE FROM Authors WHERE id = $1 RETURNING *";
+  const sql = "DELETE FROM authors WHERE id = $1 RETURNING *";
   const values = [id];
 
   cliente.query(sql, values, (err, result) => {

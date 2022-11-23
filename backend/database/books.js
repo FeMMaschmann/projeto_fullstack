@@ -5,14 +5,14 @@ const conexao = {
   password: "postgres",
   host: "127.0.0.1",
   port: 5432,
-  database: "fullstack_project",
+  database: "fullstack_projeto",
 };
 
 exports.get = (callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "SELECT * FROM Books";
+  const sql = "SELECT * FROM books";
   cliente.query(sql, (err, result) => {
     if (err) {
       callback(err, undefined);
@@ -28,13 +28,14 @@ exports.insert = (book, callback) => {
   cliente.connect();
 
   const sql =
-    "INSERT INTO Books(ISBN, Name, AuthorId, Publisher, Quantity, ReleaseDate, CreationDate) VALUES ($1, $2, $3, $4, $5, $6, NOW()) RETURNING *";
+    "INSERT INTO books(isbn, name, authorid, publisher, quantity, releasedate, creationdate) VALUES ($1, $2, $3, $4, $5, $6, NOW()) RETURNING *";
   const values = [
     book.isbn,
     book.name,
-    book.authorId,
+    book.authorid,
     book.publisher,
     book.quantity,
+    book.releasedate,
   ];
 
   cliente.query(sql, values, (err, result) => {
@@ -51,7 +52,7 @@ exports.getById = (id, callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "SELECT * FROM Books WHERE id = $1";
+  const sql = "SELECT * FROM books WHERE id = $1";
   const values = [id];
 
   cliente.query(sql, values, (err, result) => {
@@ -69,13 +70,14 @@ exports.update = (id, book, callback) => {
   cliente.connect();
 
   const sql =
-    "UPDATE Books SET ISBN = $1, Name = $2, AuthorId = $3, Publisher = $4, Quantity = $5 WHERE id = $6 RETURNING *";
+    "UPDATE books SET isbn = $1, name = $2, authorid = $3, publisher = $4, quantity = $5, releasedate = $6 WHERE id = $7 RETURNING *";
   const values = [
     book.isbn,
     book.name,
-    book.authorId,
+    book.authorid,
     book.publisher,
     book.quantity,
+    book.releasedate,
     id,
   ];
 
@@ -93,7 +95,7 @@ exports.delete = (id, callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "DELETE FROM Books WHERE id = $1 RETURNING *";
+  const sql = "DELETE FROM books WHERE id = $1 RETURNING *";
   const values = [id];
 
   cliente.query(sql, values, (err, result) => {

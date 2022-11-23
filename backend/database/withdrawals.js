@@ -5,14 +5,14 @@ const conexao = {
   password: "postgres",
   host: "127.0.0.1",
   port: 5432,
-  database: "fullstack_project",
+  database: "fullstack_projeto",
 };
 
 exports.get = (callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "SELECT * FROM Withdrawals";
+  const sql = "SELECT * FROM withdrawals";
   cliente.query(sql, (err, result) => {
     if (err) {
       callback(err, undefined);
@@ -23,13 +23,13 @@ exports.get = (callback) => {
   });
 };
 
-exports.insert = (client, callback) => {
+exports.insert = (withdrawal, callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
   const sql =
-    "INSERT INTO Withdrawals(BookId, ClientId, WithdrawDate) VALUES ($1, $2, NOW()) RETURNING *";
-  const values = [client.registration, client.name, client.phone];
+    "INSERT INTO withdrawals(bookid, clientid, withdrawdate) VALUES ($1, $2, NOW()) RETURNING *";
+  const values = [withdrawal.bookid, withdrawal.clientid];
 
   cliente.query(sql, values, (err, result) => {
     if (err) {
@@ -45,7 +45,7 @@ exports.getById = (id, callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "SELECT * FROM Withdrawals WHERE id = $1";
+  const sql = "SELECT * FROM withdrawals WHERE id = $1";
   const values = [id];
 
   cliente.query(sql, values, (err, result) => {
@@ -58,13 +58,13 @@ exports.getById = (id, callback) => {
   });
 };
 
-exports.update = (id, client, callback) => {
+exports.update = (id, withdrawal, callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
   const sql =
-    "UPDATE Withdrawals SET DevolutionDate = $1 WHERE id = $4 RETURNING *";
-  const values = [client.name, client.registration, client.phone, id];
+    "UPDATE withdrawals SET bookid = $1, clientid = $2, devolutiondate = $3 WHERE id = $4 RETURNING *";
+  const values = [withdrawal.bookid, withdrawal.clientid, withdrawal.devolutiondate, id];
 
   cliente.query(sql, values, (err, result) => {
     if (err) {
@@ -80,7 +80,7 @@ exports.delete = (id, callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "DELETE FROM Withdrawals WHERE id = $1 RETURNING *";
+  const sql = "DELETE FROM withdrawals WHERE id = $1 RETURNING *";
   const values = [id];
 
   cliente.query(sql, values, (err, result) => {
