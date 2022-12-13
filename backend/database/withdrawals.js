@@ -12,7 +12,8 @@ exports.get = (callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
-  const sql = "SELECT * FROM withdrawals";
+  const sql =
+    "SELECT w.*, b.name 'bookname', c.name 'clientname' FROM withdrawals w JOIN books b ON w.bookid = b.id JOIN clients c ON w.clientid = c.id";
   cliente.query(sql, (err, result) => {
     if (err) {
       callback(err, undefined);
@@ -64,7 +65,12 @@ exports.update = (id, withdrawal, callback) => {
 
   const sql =
     "UPDATE withdrawals SET bookid = $1, clientid = $2, devolutiondate = $3 WHERE id = $4 RETURNING *";
-  const values = [withdrawal.bookid, withdrawal.clientid, withdrawal.devolutiondate, id];
+  const values = [
+    withdrawal.bookid,
+    withdrawal.clientid,
+    withdrawal.devolutiondate,
+    id,
+  ];
 
   cliente.query(sql, values, (err, result) => {
     if (err) {
