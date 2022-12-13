@@ -3,7 +3,7 @@ import NavbarMenu from "./NavbarMenu";
 export default function Home() {
   return (
     <>
-      <NavbarMenu />
+      <h1> tome do tome</h1>
     </>
   );
 }

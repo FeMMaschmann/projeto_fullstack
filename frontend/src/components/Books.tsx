@@ -7,7 +7,7 @@ export default function Books() {
   return (
     <>
       <NavbarMenu />
-      <ButtonAddNew>Adicionar Livro</ButtonAddNew>
+      <ButtonAddNew>Livro</ButtonAddNew>
       <Lists>Livros</Lists>
     </>
   );

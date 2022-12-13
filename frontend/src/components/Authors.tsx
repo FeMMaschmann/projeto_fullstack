@@ -7,7 +7,7 @@ export default function Authors() {
   return (
     <>
       <NavbarMenu />
-      <ButtonAddNew>Adicionar Autor</ButtonAddNew>
+      <ButtonAddNew>Autor</ButtonAddNew>
       <Lists>Autores</Lists>
     </>
   );

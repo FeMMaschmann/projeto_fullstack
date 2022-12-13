@@ -7,7 +7,7 @@ export default function Withdraw() {
   return (
     <>
       <NavbarMenu />
-      <ButtonAddNew>Adicionar Retirada</ButtonAddNew>
+      <ButtonAddNew>Retirada</ButtonAddNew>
       <Lists>Retiradas</Lists>
     </>
   );
