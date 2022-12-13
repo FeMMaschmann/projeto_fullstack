@@ -63,7 +63,10 @@ export default function Lists(props: Text) {
                       {data.name} | {data.country}
                     </td>
                     <td>
-                      <ButtonEditDelete />
+                      <ButtonEditDelete
+                        typeData={props.children}
+                        typeId={data.id}
+                      />
                     </td>
                   </tr>
                 );
@@ -76,7 +79,10 @@ export default function Lists(props: Text) {
                       {data.name} | {data.registration} | {data.phone}
                     </td>
                     <td>
-                      <ButtonEditDelete />
+                      <ButtonEditDelete
+                        typeData={props.children}
+                        typeId={data.id}
+                      />
                     </td>
                   </tr>
                 );
@@ -90,7 +96,10 @@ export default function Lists(props: Text) {
                       {data.quantity} | {data.releasedate}
                     </td>
                     <td>
-                      <ButtonEditDelete />
+                      <ButtonEditDelete
+                        typeData={props.children}
+                        typeId={data.id}
+                      />
                     </td>
                   </tr>
                 );

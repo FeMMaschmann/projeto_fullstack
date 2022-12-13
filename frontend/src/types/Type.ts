@@ -74,3 +74,8 @@ export type WhitdrawList = {
   bookname: string;
   clientname: string;
 };
+
+export type TypesButtonEditDelete = {
+  typeData: string;
+  typeId: number;
+};
