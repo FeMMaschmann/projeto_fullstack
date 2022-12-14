@@ -114,6 +114,7 @@ export default function NewWithdraw() {
               variant="primary"
               type="button"
               onClick={() => {
+                console.log(data);
                 register(data);
                 navigate("../withdraw");
               }}

@@ -109,7 +109,7 @@ export default function Lists(props: Text) {
                 return (
                   <tr>
                     <td>
-                      {data.bookid} | {data.clientid}
+                      {data.bookname} | {data.clientname}
                     </td>
                   </tr>
                 );
