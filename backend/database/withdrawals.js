@@ -13,7 +13,7 @@ exports.get = (callback) => {
   cliente.connect();
 
   const sql =
-    "SELECT w.*, b.name 'bookname', c.name 'clientname' FROM withdrawals w JOIN books b ON w.bookid = b.id JOIN clients c ON w.clientid = c.id";
+    "SELECT b.name as bookname, c.name as clientname, w.* FROM withdrawals w JOIN books b ON w.bookid = b.id JOIN clients c ON w.clientid = c.id";
   cliente.query(sql, (err, result) => {
     if (err) {
       callback(err, undefined);
@@ -29,10 +29,22 @@ exports.insert = (withdrawal, callback) => {
   cliente.connect();
 
   const sql =
-    "INSERT INTO withdrawals(bookid, clientid, withdrawdate) VALUES ($1, $2, NOW()) RETURNING *";
+    "INSERT INTO withdrawals(bookid, clientid, withdrawdate, devolutiondeadline) VALUES ($1, $2, NOW(), NOW() + INTERVAL '7 days') RETURNING *";
   const values = [withdrawal.bookid, withdrawal.clientid];
 
   cliente.query(sql, values, (err, result) => {
+    if (err) {
+      callback(err, undefined);
+    } else {
+      callback(undefined, result.rows[0]);
+    }
+  });
+
+  const sql2 =
+    "UPDATE books SET quantity = quantity - 1 WHERE id = $1 RETURNING *";
+  const values2 = [withdrawal.bookid];
+  
+  cliente.query(sql2, values2, (err, result) => {
     if (err) {
       callback(err, undefined);
     } else {
@@ -64,13 +76,8 @@ exports.update = (id, withdrawal, callback) => {
   cliente.connect();
 
   const sql =
-    "UPDATE withdrawals SET bookid = $1, clientid = $2, devolutiondate = $3 WHERE id = $4 RETURNING *";
-  const values = [
-    withdrawal.bookid,
-    withdrawal.clientid,
-    withdrawal.devolutiondate,
-    id,
-  ];
+    "UPDATE withdrawals SET bookid = $1, clientid = $2, devolutiondeadline = $3 WHERE id = $4 RETURNING *";
+  const values = [withdrawal.bookid, withdrawal.clientid, withdrawal.devolutiondeadline, id];
 
   cliente.query(sql, values, (err, result) => {
     if (err) {

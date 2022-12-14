@@ -13,7 +13,7 @@ exports.get = (callback) => {
   cliente.connect();
 
   const sql =
-    "SELECT b.*, a.name 'authorname' FROM books b JOIN authors a ON b.authorid = a.id";
+    "SELECT a.name as authorname, b.* FROM books b JOIN authors a ON b.authorid = a.id";
   cliente.query(sql, (err, result) => {
     if (err) {
       callback(err, undefined);
