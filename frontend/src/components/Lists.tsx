@@ -53,6 +53,25 @@ export default function Lists(props: Text) {
                 <th>País</th>
               </>
             )}
+            {props.children === "Clientes" && (
+              <>
+                <th>Registro</th>
+                <th>Telefone</th>
+              </>
+            )}
+            {props.children === "Livros" && (
+              <>
+                <th>Registro</th>
+                <th>ISBN</th>
+                <th>Publicador</th>
+                <th>Quantidade</th>
+              </>
+            )}
+            {props.children === "Retiradas" && (
+              <>
+                <th>Nome do cliente</th>
+              </>
+            )}
             {props.children !== "Retiradas" && <th>Gerenciar</th>}
           </tr>
         </thead>
@@ -77,9 +96,9 @@ export default function Lists(props: Text) {
               clientData.map((data, index) => {
                 return (
                   <tr>
-                    <td>
-                      {data.name} | {data.registration} | {data.phone}
-                    </td>
+                    <td>{data.name}</td>
+                    <td>{data.registration}</td>
+                    <td>{data.phone}</td>
                     <td>
                       <ButtonEditDelete
                         typeData={props.children}
@@ -93,10 +112,10 @@ export default function Lists(props: Text) {
               bookData.map((data, index) => {
                 return (
                   <tr>
-                    <td>
-                      {data.name} | {data.isbn} | {data.publisher} |{" "}
-                      {data.quantity} | {data.releasedate}
-                    </td>
+                    <td>{data.name}</td>
+                    <td>{data.isbn}</td>
+                    <td>{data.publisher}</td>
+                    <td>{data.quantity}</td>
                     <td>
                       <ButtonEditDelete
                         typeData={props.children}
@@ -110,9 +129,8 @@ export default function Lists(props: Text) {
               withdrawData.map((data, index) => {
                 return (
                   <tr>
-                    <td>
-                      {data.bookname} | {data.clientname}
-                    </td>
+                    <td>{data.bookname}</td>
+                    <td>{data.clientname}</td>
                   </tr>
                 );
               })}
