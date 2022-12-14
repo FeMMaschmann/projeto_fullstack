@@ -59,9 +59,8 @@ export default function Lists(props: Text) {
               authorData.map((data, index) => {
                 return (
                   <tr>
-                    <td>
-                      {data.name} | {data.country}
-                    </td>
+                    <td>{data.name}</td>
+                    <td>{data.country}</td>
                     <td>
                       <ButtonEditDelete
                         typeData={props.children}
