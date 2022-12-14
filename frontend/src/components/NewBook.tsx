@@ -94,6 +94,7 @@ export default function NewBook() {
                   });
                 }}
               >
+                <option value="0">Escolha uma opção...</option>
                 {authorArray.map((data, index) => {
                   return (
                     <>
