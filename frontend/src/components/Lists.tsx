@@ -47,15 +47,13 @@ export default function Lists(props: Text) {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th className="w-75">{props.children}</th>
+            <th>{props.children}</th>
             {props.children === "Autores" && (
               <>
-                <td className="w-75">País</td>
+                <th>País</th>
               </>
             )}
-            {props.children !== "Retiradas" && (
-              <th className="w-25">Gerenciar</th>
-            )}
+            {props.children !== "Retiradas" && <th>Gerenciar</th>}
           </tr>
         </thead>
         <tbody>
