@@ -38,20 +38,21 @@ exports.insert = (withdrawal, callback) => {
     } else {
       callback(undefined, result.rows[0]);
     }
-  });
-
-  const sql2 =
-    "UPDATE books SET quantity = quantity - 1 WHERE id = $1 RETURNING *";
-  const values2 = [withdrawal.bookid];
-  
-  cliente.query(sql2, values2, (err, result) => {
-    if (err) {
-      callback(err, undefined);
-    } else {
-      callback(undefined, result.rows[0]);
-    }
     cliente.end();
   });
+
+  // const sql2 =
+  //   "UPDATE books SET quantity = quantity - 1 WHERE id = $1 RETURNING *";
+  // const values2 = [withdrawal.bookid];
+  
+  // cliente.query(sql2, values2, (err, result) => {
+  //   if (err) {
+  //     callback(err, undefined);
+  //   } else {
+  //     callback(undefined, result.rows[0]);
+  //   }
+  //   cliente.end();
+  // });
 };
 
 exports.getById = (id, callback) => {
