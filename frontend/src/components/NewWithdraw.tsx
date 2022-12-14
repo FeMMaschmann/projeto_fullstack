@@ -39,7 +39,7 @@ const getClients = async () => {
   }
 };
 
-export default function NewAuthor() {
+export default function NewWithdraw() {
   const [data, setData] = useState<WithdrawList>({
     bookid: 0,
     clientid: 0,

@@ -1,9 +1,10 @@
 import { useLocation } from "react-router-dom";
 import NavbarMenu from "./NavbarMenu";
 import "../styles/Auth.css";
-import Home from "./Home";
 import NewClient from "./NewClient";
 import NewAuthor from "./NewAuthor";
+import NewBook from "./NewBook";
+import NewWithdraw from "./NewWithdraw";
 
 export default function AddNew() {
   const location = useLocation();
@@ -13,9 +14,9 @@ export default function AddNew() {
     <>
       <NavbarMenu />
       {from === "Cliente" && <NewClient />}
-      {from === "Livro" && <Home />}
+      {from === "Livro" && <NewBook />}
       {from === "Autor" && <NewAuthor />}
-      {from === "Retirada" && <Home />}
+      {from === "Retirada" && <NewWithdraw />}
     </>
   );
 }
