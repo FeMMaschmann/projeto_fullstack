@@ -136,6 +136,7 @@ export default function NewBook() {
             </Form.Group>
 
             <Button
+              disabled={data.authorid === 0 ? true : false}
               variant="primary"
               type="button"
               onClick={() => {

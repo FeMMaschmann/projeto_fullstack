@@ -77,6 +77,7 @@ export default function NewWithdraw() {
                   });
                 }}
               >
+                <option value="0">Escolha uma opção...</option>
                 {bookArray.map((data, index) => {
                   return (
                     <>
@@ -97,6 +98,7 @@ export default function NewWithdraw() {
                   });
                 }}
               >
+                <option value="0">Escolha uma opção...</option>
                 {clientArray.map((data, index) => {
                   return (
                     <>
@@ -108,6 +110,7 @@ export default function NewWithdraw() {
             </Form.Group>
 
             <Button
+              disabled={data.clientid === 0 || data.bookid === 0 ? true : false}
               variant="primary"
               type="button"
               onClick={() => {
