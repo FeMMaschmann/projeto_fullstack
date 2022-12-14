@@ -34,10 +34,9 @@ export type BookAddNew = {
   authorid: number;
   publisher: string;
   quantity: number;
-  releasedate: string;
 };
 
-export type WhitdrawAddNew = {
+export type WithdrawAddNew = {
   bookid: number;
   clientid: number;
 };
@@ -68,7 +67,7 @@ export type BookList = {
   authorname: string;
 };
 
-export type WhitdrawList = {
+export type WithdrawList = {
   bookid: number;
   clientid: number;
   bookname: string;

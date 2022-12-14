@@ -49,7 +49,7 @@ export default function NewAuthor() {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Telefone</Form.Label>
+              <Form.Label>País</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Digite o Telefone"

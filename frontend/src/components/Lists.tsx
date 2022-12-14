@@ -7,7 +7,7 @@ import {
   AuthorList,
   ClientList,
   BookList,
-  WhitdrawList,
+  WithdrawList,
 } from "../types/Type";
 import axios from "axios";
 
@@ -31,7 +31,7 @@ export default function Lists(props: Text) {
   const [authorData, setAuthorData] = useState<AuthorList[] | []>([]);
   const [clientData, setClientData] = useState<ClientList[] | []>([]);
   const [bookData, setBookData] = useState<BookList[] | []>([]);
-  const [withdrawData, setWithdrawData] = useState<WhitdrawList[] | []>([]);
+  const [withdrawData, setWithdrawData] = useState<WithdrawList[] | []>([]);
 
   useEffect(() => {
     getData(props.children).then(function (result) {
