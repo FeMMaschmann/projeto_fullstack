@@ -48,6 +48,11 @@ export default function Lists(props: Text) {
         <thead>
           <tr>
             <th className="w-75">{props.children}</th>
+            {props.children === "Autores" && (
+              <>
+                <td className="w-75">País</td>
+              </>
+            )}
             {props.children !== "Retiradas" && (
               <th className="w-25">Gerenciar</th>
             )}
