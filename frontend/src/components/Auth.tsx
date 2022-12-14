@@ -10,12 +10,11 @@ type LoginData = {
 };
 
 const loginUser = async (data: LoginData) => {
-  return 1;
   try {
     const user = await axios.post("api/logins", data, {
       baseURL: baseURL,
     });
-    return user.data[0];
+    return user.data.count;
   } catch (error) {
     alert("API inacessivel!");
     console.log(error);
@@ -61,7 +60,7 @@ export default function Auth(props: TypesLogged) {
                   pass: e.target.value,
                 });
               }}
-              value={data.email}
+              value={data.pass}
             />
           </div>
           <div className="d-grid gap-2 mt-3">
@@ -70,7 +69,7 @@ export default function Auth(props: TypesLogged) {
               className="btn btn-primary"
               onClick={() => {
                 loginUser(data).then(function (result) {
-                  if (result === 1) {
+                  if (result == 1) {
                     props.setIsLogged(true);
                     navigate("../clients");
                   } else {

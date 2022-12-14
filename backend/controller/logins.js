@@ -1,9 +1,9 @@
 const database = require("../database/logins");
 
 exports.getByEmailPass = (req, res) => {
-  const id = req.params.id;
+  const login = req.body;
 
-  database.getById(id, (err, client) => {
+  database.getByEmailPass(login, (err, client) => {
     if (err) {
       return res.status(500).json({ erro: err });
     } else {

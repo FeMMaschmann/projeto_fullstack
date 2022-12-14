@@ -8,12 +8,12 @@ const conexao = {
   database: "fullstack_projeto",
 };
 
-exports.getByEmailPass = (id, callback) => {
+exports.getByEmailPass = (client, callback) => {
   const cliente = new Client(conexao);
   cliente.connect();
 
   const sql = "SELECT COUNT(*) FROM logins WHERE email = $1 and pass = $2";
-  const values = [email, pass];
+  const values = [client.email, client.pass];
 
   cliente.query(sql, values, (err, result) => {
     if (err) {
