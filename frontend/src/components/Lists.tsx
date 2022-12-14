@@ -61,7 +61,6 @@ export default function Lists(props: Text) {
             )}
             {props.children === "Livros" && (
               <>
-                <th>Registro</th>
                 <th>ISBN</th>
                 <th>Publicador</th>
                 <th>Quantidade</th>
